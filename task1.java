@@ -8,15 +8,15 @@ import java.util.Scanner;
 
 public class task1 {
     public static void main(String[] args) {
-        System.out.println(isAnagrams("aaaaas", "saaaaa"));
+        System.out.println(isAnagrams("aaaaas", "saaaaa","aaasaa"));
 
 
     }
 
-    public static boolean isAnagrams(String s1, String s2) {
+    public static boolean isAnagrams(String s1, String s2,String s3) {
         Map<Character, Integer> m = new HashMap<>();
 
-        if (s1.length() != s2.length()) {
+        if (s1.length() != s2.length()&&s1.length()!=s3.length()) {
             return false;
         }
 
@@ -39,6 +39,15 @@ public class task1 {
             m.put(c2, (m.get(c2) - 1));
             if (m.get(c2) == 0) {
                 m.remove(c2);
+            }
+        }
+        for (int j = 0; j < s3.length(); j++) {
+            char c3 = s3.charAt(j);
+            if (m.get(c3) == null)
+                return false;
+            m.put(c3, (m.get(c3) - 1));
+            if (m.get(c3) == 0) {
+                m.remove(c3);
             }
         }
        return m.isEmpty();
